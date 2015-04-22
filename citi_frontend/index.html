@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  	<head>
+		<title>CitiBike Analysis</title>
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+		<meta charset="utf-8">
+
+		<link href="css/bootstrap.css" rel="stylesheet">
+		<link href="css/citibike.css" rel="stylesheet">
+		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+
+  	</head>
+  	<body>
+  		<div class="container-fluid">
+	      	<div class="row">
+		        <div class="col-sm-3 col-md-2 sidebar">
+		        	<h1 class="nav-heading">CitiBike</h1>
+		          	<ul class="nav nav-sidebar">
+			            <li class="active"><a href="#" class="menuitem" tag="overview">Overview</a></li>
+			            <li><a href="freq_plot.html" class="menuitem" tag="start_stn_freq">Start Station Frequency</a></li>
+			            <li><a href="#" class="menuitem" tag="heat_map">Heat Map</a></li>
+		          	</ul>
+		        </div>
+		        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" id="content">
+					<h1 class="page-header">Overview</h1>
+		        	<div class="row" id="r1">
+						<h3>
+							<p>Citi Bike System consists of renting a bike and returning it back to any available docking station after usage. The placement of docking stations can prove to be a vital to the business as the usage of the bike largely depends on bikes in near vicinity. Most usage of the bikes is during the weekdays and mostly during the rush hours which will be the main focus. Depending on the usage of bikes to a particular area or location and analyzing the frequency of bikes rented on daily basis as compared with the taxi service usage, prediction can be made for installing new docking station in that area.</p><br>
+
+							<p><u><b>Introduction:</b></u> Citi Bike System is been effectively running in New York City over 332 stations in Manhattan and Brooklyn since May 2013 with more than 6000 bikes and over 34,000 daily riders. The objective of our project is to predict efficient locations for bike docking stations depending on the demand of the bike locations as opposed to the taxi services being used in that area. If the taxi service is popular in a particular area which does not have bike station currently or is reasonably far, then the bike stations can be made available to the crowd to tap the opportunity depending on the demand for bikes. By using the resulting predictions of the demand for new bike docking stations, we can provide an estimate of how much is the incoming and outgoing demand if a new bike station is built based on effect of the existing network.</p>
+							<p>While doing this research, there are some other factors like weather, population, people’s behavior towards biking which should be considered for an effective bike system. The Citi Bike in NYC has started publishing the trip data with One CSV file per month since July 2013. The NYC Taxi data for 2013 is available through FOIL. The pairwise predictions of source-destination trip along with duration of trip can help to understand the rebalancing of the docking stations which is one of the major challenges faced by Citi Bike. </p><br>
+
+							<p><u><b>Motivation:</b></u>
+							This analytics will be important to people living in metro cities where bikes are used more frequently as a commute option. Bike sharing systems has become increasingly popular in recent years aiming towards promoting the active commute option, reachability to the destination; reduce the demand on automobiles and greenhouse gas emissions. The data stored by such systems include travel times, pickup and drop off locations and statistics about the docking stations. These data often leads to educated guess for the usage predictions.</p>
+						</h3>
+					</div>
+					<div class="row" id="r2">
+						<div id="map-canvas"></div>
+					</div>
+				</div>
+			</div>	
+		</div>
+
+		<!-- Load jquery and bootstrap js -->
+		<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/citibike.js"></script>
+  	</body>
+</html>

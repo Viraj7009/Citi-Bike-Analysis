@@ -1,0 +1,28 @@
+hadoop fs -mkdir hiveInput
+hadoop fs -copyFromLocal /home/cloudera/*.* /user/cloudera/hiveInput
+hadoop fs –ls hiveInput 
+hive>
+
+create external table nyctaxitrip
+(   medallion string, hack_license string, vendor_id string, rate_code int, store_and_fwd_flag string, pickup_datetime timestamp, dropoff_datetime timestamp, passenger_count int, trip_time_in_secs double, trip_distance double, pickup_longitude double, pickup_latitude double, dropoff_longitude double,  dropoff_latitude double) partition (month int) clustered by (pickup_datetime, medallion) sorted by (pickup_datetime, medallion) row format delimited fields terminated by ',' stored as textfile location '/user/cloudera/hiveInput/' tblproperties ("skip.header.line.count"="1");
+
+show tables;
+
+describe nyctaxitrip;
+
+LOAD DATA  INPATH '/user/cloudera/hiveInput/trip_data_1.csv.gz' OVERWRITE INTO TABLE nyctaxitrip;
+LOAD DATA  INPATH '/user/cloudera/hiveInput/trip_data_2.csv.gz' INTO TABLE nyctaxitrip;
+LOAD DATA  INPATH '/user/cloudera/hiveInput/trip_data_3.csv.gz' INTO TABLE nyctaxitrip;
+LOAD DATA  INPATH '/user/cloudera/hiveInput/trip_data_4.csv.gz' INTO TABLE nyctaxitrip;
+LOAD DATA  INPATH '/user/cloudera/hiveInput/trip_data_5.csv.gz' INTO TABLE nyctaxitrip;
+LOAD DATA  INPATH '/user/cloudera/hiveInput/trip_data_6.csv.gz' INTO TABLE nyctaxitrip;
+LOAD DATA  INPATH '/user/cloudera/hiveInput/trip_data_7.csv.gz' INTO TABLE nyctaxitrip;
+LOAD DATA  INPATH '/user/cloudera/hiveInput/trip_data_8.csv.gz' INTO TABLE nyctaxitrip;
+LOAD DATA  INPATH '/user/cloudera/hiveInput/trip_data_9.csv.gz' INTO TABLE nyctaxitrip;
+LOAD DATA  INPATH '/user/cloudera/hiveInput/trip_data_10.csv.gz' INTO TABLE nyctaxitrip;
+LOAD DATA  INPATH '/user/cloudera/hiveInput/trip_data_11.csv.gz' INTO TABLE nyctaxitrip;
+LOAD DATA  INPATH '/user/cloudera/hiveInput/trip_data_12.csv.gz' INTO TABLE nyctaxitrip;
+
+SELECT * FROM nyctaxitrip where trip_distance < 6 AND trip_time_in_secs < 1800 AND (CAST(pickup_longitude AS float) BETWEEN -90 AND -30 OR CAST(pickup_latitude AS float) BETWEEN 30 AND 90 OR CAST(dropoff_longitude AS float) BETWEEN -90 AND -30 OR CAST(dropoff_latitude AS float) BETWEEN 30 AND 90);
+
+// select valid lat long, trip distance less than 6 miles and trips less than half hour - considering, biking makes sense only within these times 
